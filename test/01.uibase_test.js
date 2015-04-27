@@ -20,6 +20,26 @@ function check(done, fn){
 
 describe("UIBase class", function(){
 
+    describe("UIBase class inherits from Base class", function(){
+
+        var comp = new UIBase();
+
+        before(function(done){
+            comp.start().then(done);
+        });
+
+        it("should have subscribe", function(){
+            comp.subscribe("TEST", function(){});
+            // no exception?
+        });
+
+        it("should have publish", function(done){
+            comp.subscribe("TEST", done);
+            comp.publish("TEST");
+        });
+
+    });
+
     describe("building a UI component with hard coded html and LESS", function(){
 
         var comp = new UIBase("<div class='parent'><span class='child'>foo</span></div>", ".parent{.child{display:none;}}"),
