@@ -20,13 +20,15 @@
     "when": "^3.7.2"
   },
   "devDependencies": {
-    "babelify": "^6.0.2",
+    "babel-loader": "^5.0.0",
     "chai": "^2.3.0",
     "karma": "^0.12.31",
-    "karma-browserify": "^4.1.2",
     "karma-chrome-launcher": "^0.1.8",
     "karma-mocha": "^0.1.10",
+    "karma-spec-reporter": "0.0.19",
+    "karma-webpack": "^1.5.0",
     "mocha": "^2.2.4",
-    "sinon": "^1.14.1"
+    "sinon": "git://github.com/cjohansen/Sinon.JS#sinon-2.0",
+    "webpack": "^1.8.10"
   }
 }

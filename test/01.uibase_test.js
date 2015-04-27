@@ -22,7 +22,7 @@ describe("UIBase class", function(){
 
     describe("building a UI component with hard coded html and css", function(){
 
-        var comp = new UIBase("<div></div>", "{}");
+        var comp = new UIBase("<div></div>", "");
 
         it("should be ok", function(done){
             comp.getElement().then(function($el){

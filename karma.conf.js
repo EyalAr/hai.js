@@ -10,13 +10,33 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'browserify'],
+    frameworks: [ 'mocha' ],
 
 
     // list of files / patterns to load in the browser
     files: [
-        'test/**/*.js'
+        { pattern: 'test/test-context.js', watched: false }
     ],
+
+
+    preprocessors: {
+        'test/test-context.js': ['webpack']
+    },
+
+
+    webpack: {
+        module: {
+            loaders: [
+                { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
+            ]
+        },
+        watch: true
+    },
+
+
+    webpackServer: {
+        noInfo: true
+    },
 
 
     // list of files to exclude
@@ -24,24 +44,10 @@ module.exports = function(config) {
     ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        'test/**/*.js': ['browserify']
-    },
-
-
-
-    browserify: {
-      debug: true,
-      transform: [ 'babelify' ]
-    },
-
-
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: [ 'spec' ],
 
 
     // web server port
