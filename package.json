@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers js:babel/register --reporter spec 'test/**/*.js'"
+    "test": "./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",

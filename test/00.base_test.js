@@ -164,4 +164,86 @@ describe('Base class', function(){
 
     });
 
+    describe("unsubscribe from component", function(){
+
+        describe("subscribe before component started", function(){
+
+            describe("unsubscribe before componenet started", function(){
+
+                var comp = new Base(true),
+                    callback = spy(),
+                    us = comp.subscribe("TEST", callback);
+
+                it("should not run subscription", function(){
+                    us();
+                    comp.publish("TEST");
+                    expect(callback.called).to.be.false;
+                });
+
+            });
+
+            describe("unsubscribe after componenet started", function(){
+
+                var comp = new Base(true),
+                    callback = spy(),
+                    us = comp.subscribe("TEST", callback);
+
+                before(function(done){
+                    comp.start().then(done);
+                });
+
+                it("should not run subscription", function(){
+                    us();
+                    comp.publish("TEST");
+                    expect(callback.called).to.be.false;
+                });
+
+            });
+
+            describe("unsubscribe after componenet started -> stopped", function(){
+
+                var comp = new Base(true),
+                    callback = spy(),
+                    us = comp.subscribe("TEST", callback);
+
+                before(function(done){
+                    comp.start().then(function(){
+                        return comp.stop();
+                    }).then(done);
+                });
+
+                it("should not run subscription", function(){
+                    us();
+                    comp.publish("TEST");
+                    expect(callback.called).to.be.false;
+                });
+
+            });
+
+            describe("unsubscribe after componenet started -> stopped -> started", function(){
+
+                var comp = new Base(true),
+                    callback = spy(),
+                    us = comp.subscribe("TEST", callback);
+
+                before(function(done){
+                    comp.start().then(function(){
+                        return comp.stop();
+                    }).then(function(){
+                        return comp.start();
+                    }).then(done);
+                });
+
+                it("should not run subscription", function(){
+                    us();
+                    comp.publish("TEST");
+                    expect(callback.called).to.be.false;
+                });
+
+            });
+
+        });
+
+    });
+
 });
