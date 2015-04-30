@@ -5,7 +5,7 @@ import $ from "jquery";
 import UIBase from "../lib/ui/base";
 
 var spy = sinon.spy,
-    expect = chai.expect
+    expect = chai.expect;
 
 function check(done, fn){
     return function(){
